@@ -6,43 +6,55 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    @IBOutlet weak var loanAmount: UITextField!
+    @IBOutlet weak var months: UITextField!
+    @IBOutlet weak var interestRate: UITextField!
+    @IBOutlet weak var monthlyTotalLabel: UILabel!
+    
+    @IBOutlet weak var totalLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-//    func getUsers()
-////    {   do{
-////        let users = try context.fetch(StudentDatabase.fetchRequest(StudentDatabase.fetchRequest()))
-////        }
-////        catch{
-////            //Error
-////        }
-////
-////
-//
-//    }
-//
-//    func createUsers(){
-////        let newUser = StudentDatabase(context:context)
-////        newUser.firstName = firstName
-////        newUser.lastName = lastName
-////        newUser.email = email
-////        newUser.password = password
-////
-////        do{
-////            try context.save()
-////
-////        }
-////        catch {
-////            //Error
-////        }
-//
-//    }
+    
+    
+    @IBAction func calculateBtn(_ sender: Any) {
+        calculateLoan()
+    }
+    
+    
+    
+    func calculateLoan(){
+        //    PV - loan amount
+        //    PMT - monthly payment
+        //    i - interest rate per month
+        //    n - number of months
+        
+        if (loanAmount.text! == "" || months.text! == "" || interestRate.text! == ""   ){
+            //alert
+        }
+        
+        let pv = Double (loanAmount.text!) ?? .zero
+        let n = Double (months.text!) ?? .zero
+        let i = Double (interestRate.text!) ?? .zero
+        
+        let rate = i / 100 / 12
+        let pmt = pv * rate / (1 - pow(1 + rate, -n))
+        
+        let total = pmt * n
+        
+        monthlyTotalLabel.text = String(format:"%@%.2f", "Monthly total: $", pmt)
+        
+        totalLabel.text =  String(format:"%@%.2f", "Total: $", total)
+        
+        
+    }
+    
 }
 
