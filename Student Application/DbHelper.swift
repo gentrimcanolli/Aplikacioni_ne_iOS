@@ -13,7 +13,8 @@ class DbHelper {
     
     init() {
         db = openDatabase()
-        createTableSubjects()
+//        createTableSubjects()
+//        createTableStudent()
     }
     
     let path: String = "StudentDB.sqlite"
@@ -22,7 +23,7 @@ class DbHelper {
     
     func openDatabase() -> OpaquePointer? {
         let url = try!
-        FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil ,create: false).appendingPathComponent(path)
+            FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil ,create: false).appendingPathComponent(path)
         
         var db: OpaquePointer? = nil
         if sqlite3_open(url.path, &db) != SQLITE_OK {
@@ -57,7 +58,7 @@ class DbHelper {
     
     
     func insertStudent(firstname: String, lastname:String, email:String, password:String) {
-        let students = checkUser()
+        let students = readUser()
         
         for s in students{
             if s.email == email {
@@ -88,12 +89,12 @@ class DbHelper {
         sqlite3_finalize(insertStatement)
     }
     
-    func checkUser() -> [Students]{
+    func readUser() -> [Students]{
         let checkQuery = "SELECT * FROM student;"
         var checkStatement: OpaquePointer? = nil
         
         var students: [Students] = []
-
+        
         if sqlite3_prepare_v2(db, checkQuery, -1, &checkStatement, nil) == SQLITE_OK{
             while sqlite3_step(checkStatement) == SQLITE_ROW{
                 let id = sqlite3_column_int(checkStatement, 0)
@@ -101,20 +102,46 @@ class DbHelper {
                 let lastname = String(describing: String(cString: sqlite3_column_text(checkStatement, 1)))
                 let email = String(describing: String(cString: sqlite3_column_text(checkStatement, 2)))
                 let password = String(describing: String(cString: sqlite3_column_text(checkStatement, 3)))
-              
+                
                 students.append(Students(id: Int(id), firstname: firstname, lastname: lastname, email: email, password: password))
-
+                
                 print("Query results: ")
-                print("\(id) | \(firstname) | \(email)")
+                print("\(email) | \(password)")
             }
         } else{
-            print("Selecte query error")
+            print("Select query error")
         }
         sqlite3_finalize(checkStatement)
         return students
     }
     
+    func checkUser(email: String, password: String) -> [Students]{
+        let checkQuery = "SELECT * FROM student WHERE email=\(email) AND password=\(password);"
+        var checkStatement: OpaquePointer? = nil
+        
+        var students: [Students] = []
+        
+        if sqlite3_prepare_v2(db, checkQuery, -1, &checkStatement, nil) == SQLITE_OK{
+            while sqlite3_step(checkStatement) == SQLITE_ROW{
+                let id = sqlite3_column_int(checkStatement, 0)
+                let firstname = String(describing: String(cString: sqlite3_column_text(checkStatement, 0)))
+                let lastname = String(describing: String(cString: sqlite3_column_text(checkStatement, 1)))
+                let email = String(describing: String(cString: sqlite3_column_text(checkStatement, 2)))
+                let password = String(describing: String(cString: sqlite3_column_text(checkStatement, 3)))
+                
+                students.append(Students(id: Int(id), firstname: firstname, lastname: lastname, email: email, password: password))
+                
+                print("Query results: ")
+                print("\(email) | \(password)")
+            }
+        } else{
+            print("Select query error")
+        }
+        sqlite3_finalize(checkStatement)
+        return students
+    }
     
+
     func createTableSubjects(){
         let createTableQuery = "CREATE TABLE IF NOT EXISTS subjects(id INTEGER PRIMARY KEY AUTOINCREMENT, semester TEXT, subject TEXT, professor TEXT, ects INTEGER);"
         
@@ -151,7 +178,7 @@ class DbHelper {
             sqlite3_bind_text(insertStatement, 2, (subject as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 3, (professor as NSString).utf8String, -1, nil)
             sqlite3_bind_int(insertStatement, 4, Int32(ects))
-        
+            
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("Successfully inserted row")
             } else{
@@ -168,19 +195,19 @@ class DbHelper {
         var checkStatement: OpaquePointer? = nil
         
         var subjects: [Subjects] = []
-
+        
         if sqlite3_prepare_v2(db, checkQuery, -1, &checkStatement, nil) == SQLITE_OK{
             while sqlite3_step(checkStatement) == SQLITE_ROW{
                 let id = sqlite3_column_int(checkStatement, 0)
                 
                 let semester = String(describing: String(cString: sqlite3_column_text(checkStatement, 1)))
-                 
+                
                 let subject = String(describing: String(cString: sqlite3_column_text(checkStatement, 2)))
                 
                 let professor = String(describing: String(cString: sqlite3_column_text(checkStatement, 3)))
                 
                 let ects = sqlite3_column_int(checkStatement, 4)
-              
+                
                 subjects.append(Subjects(id: Int(id), semester: semester, subject: subject, professor: professor, ects: Int(ects)))
                 print("Query results: ")
                 print("\(id) | \(subject) | \(professor) | \(ects)")

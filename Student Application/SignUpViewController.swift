@@ -19,29 +19,13 @@ class SignUpViewController: UIViewController {
     
     var db = DbHelper()
     
-    var emailArray = [String]()
+    var emailArray = [Students]()
     var students = Array<Students>()
     
-//    var db: OpaquePointer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        db.createTable()
-        
-
-//        let url = try!
-//            FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil ,create: false).appendingPathComponent("StudentDB.sqlite")
-//
-//        if sqlite3_open(url.path, &db) != SQLITE_OK{
-//            print("Error opening")
-//        }
-//
-//        let createTable = "CREATE TABLE IF NOT EXISTS StudentDB (id INTEGER PRIMARY KEY AUTOINCREMENT, firstname TEXT, lastname TEXT, email TEXT, password TEXT)"
-//
-//        if sqlite3_exec(db, createTable, nil, nil, nil) != SQLITE_OK{
-//            print("Creating table problem")
-//            return
-//        }
+        db.createTableStudent()
         
     }
     
@@ -50,111 +34,74 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func signUpBtn(_ sender: Any) {
-        let firstName = firstNameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lastName = lastNameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let email = emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let password = passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let firstName = firstNameTF.text
+        let lastName = lastNameTF.text
+        let email = emailTF.text
+        let password = passwordTF.text
         
         if((firstName?.isEmpty)! || (lastName?.isEmpty)! || (email?.isEmpty)! || (password?.isEmpty)!){
             showAlert(alertTitle: "Missing Fields", message: "All fields are required!")
             return
-        } else {
-//            
-//            db.insert(firstname: firstName!, lastname: lastName!, email: email!, password: password!)
-//            students = db.checkUser()
+        }else if (password?.count ?? 0 < 8){
+            showAlert(alertTitle: "Check password", message: "Your password must contain 8 or more letters")
+        } else if (emailValidation(email: email!) == false){
+            showAlert(alertTitle: "Check email", message: "Invalid form of email")
+        }
+        else if (checkUsers(email: email!) == true){
+            showAlert(alertTitle: "User Exists", message: "This user already exists")
+        }
+        else {
+            db.insertStudent(firstname: firstName!, lastname: lastName!, email: email!, password: password!)
             
-             
-//            db.insertData(firstName: firstName!, lastName: lastName!, email: email!, password: password!)
-//            showAlert(alertTitle: "Sign up", message: "Successfully registered")
-//
-//
-//            var stmt: OpaquePointer?
-//            
-//            let insertTable = "INSERT INTO StudentDB (firstname, lastname, email, password) VALUES(?,?,?,?)"
-//            
-//            if sqlite3_prepare(db, insertTable, -1, &stmt, nil) != SQLITE_OK{
-//                print("Insert error")
-//            }
-//            
-//            if sqlite3_bind_text(stmt, 1, firstName, -1, nil) != SQLITE_OK{
-//                print("error binding firstname")
-//            }
-//            
-//            if sqlite3_bind_text(stmt, 2, lastName, -1, nil) != SQLITE_OK{
-//                print("error binding lastname")
-//            }
-//            
-//            if sqlite3_bind_text(stmt, 3, email, -1, nil) != SQLITE_OK{
-//                print("error binding email")
-//            }
-//            
-//            if sqlite3_bind_text(stmt, 4, password, -1, nil) != SQLITE_OK{
-//                print("error binding password")
-//            }
-//            
-//            if sqlite3_step(stmt) == SQLITE_DONE {
-//                print("Database saved successfully")
-//                
-//                showAlert(alertTitle: "Sign up", message: "Successfully Registered!")
-//            }
+            showAlert(alertTitle: "Register Successfull", message: "You are registered!")
             
         }}
-        
-        
-        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //        let context = appDelegate.persistentContainer.viewContext
-        //
-        //        let firstName = NSEntityDescription.insertNewObject(forEntityName: "StudentDatabase", into: context)
-        //        let lastName = NSEntityDescription.insertNewObject(forEntityName: "StudentDatabase", into: context)
-        //        let email = NSEntityDescription.insertNewObject(forEntityName: "StudentDatabase", into: context)
-        //        let password = NSEntityDescription.insertNewObject(forEntityName: "StudentDatabase", into: context)
-        //
-        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "StudentDatabase")
-        //        fetchRequest.returnsObjectsAsFaults = false
-        //
-        //        do{
-        //            let results = try context.fetch(fetchRequest)
-        //
-        //            for result in results as! [NSManagedObject]{
-        //                if let email = result.value(forKey:"email") as? String{
-        //                    self.emailArray.append(email)}
-        //            }
-        //        }catch {
-        //            print("Error")
-        //        }
-        //
-        //
-        //
-        //        if((firstNameTF.text == "") || (lastNameTF.text == "") || (emailTF.text == "") || ( passwordTF.text == "")){
-        //            showAlert(alertTitle: "Missing Fields", message: "All fields are required!")
-        //        } else {
-        //
-        //            if(emailArray.contains(emailTF.text!)){
-        //                showAlert(alertTitle:"Account Exists", message:"This account already exists!")
-        //            } else{
-        //
-        //                firstName.setValue(self.firstNameTF.text, forKey: "firstName")
-        //                lastName.setValue(self.lastNameTF.text, forKey: "lastName")
-        //                email.setValue(self.emailTF.text, forKey: "email")
-        //                password.setValue(self.passwordTF.text, forKey: "password")
-        //                showAlert(alertTitle: "Sign up", message: "Successfully Registered!")
-        //
-        //
-        //            }
-        //
-        //
-        //        } }
-        
-        func showAlert(alertTitle:String, message:String){
-            let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
-                UIAlertAction in
-                _ = self.navigationController?.popViewController(animated: true)
-                
-            }
-            
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-        }
     
+    func showAlert(alertTitle:String, message:String){
+        let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
+            UIAlertAction in
+            _ = self.navigationController?.popViewController(animated: true)
+            
+        }
+        
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
+    
+    func emailValidation(email: String) -> Bool{
+        var returnVal = true
+        let regexEmail = "[A-Z0-9a-z.-_]+@[gmail][a-zA-Z]{2,3}"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regexEmail)
+            let nsString = email as NSString
+            let results = regex.matches(in: email, range: _NSRange(location: 0, length: nsString.length))
+            
+            if results.count == 0 {
+                returnVal = false
+            }
+        }
+        catch _ as NSError{
+            print("regex error!")
+            returnVal = false
+        }
+        
+        return returnVal
+        
+        
+    }
+    
+    func checkUsers(email: String) -> Bool{
+        emailArray = db.readUser()
+        var check = false
+        for student in emailArray{
+            if (student.email == email) {
+                check = true
+            }
+        }
+        
+        return check
+    }
+    
+}

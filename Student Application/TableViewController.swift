@@ -18,6 +18,8 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        db.createTableSubjects()
+        
         subjectsTableView.delegate = self
         subjectsTableView.dataSource = self
         
