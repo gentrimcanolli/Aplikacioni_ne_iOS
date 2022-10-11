@@ -1,10 +1,3 @@
-//
-//  SignInViewController.swift
-//  Student Application
-//
-//  Created by TDI Student on 30.8.22.
-//
-
 import UIKit
 
 
@@ -18,49 +11,63 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        db.createTableStudent()
-    
     }
     
 
     @IBAction func signInBtn(_ sender: Any) {
-        
-        
-        
-        let email = String(emailText.text!)
-        let password = String(passwordText.text!)
-        
-        users = db.checkUser(email: email, password: password)
-        
-        for user in users{
-            if (user.email == email && user.password == password) {
-                _ = self.navigationController?.pushViewController(HomePageViewController(), animated: true)
-                print("Successfully logged in!")
-            } else{
-                showAlert(alertTitle: "SignIn Failed!", message: "Wrong credentials!")
-                print("Error login ")
-                
+
+        let email = emailText.text!
+        let password = passwordText.text!
+
+        if (email.isEmpty && password.isEmpty){
+            showAlert(alertTitle: "Missing Fields", message: "All field are required!")
+        }else if (checkUsers(email:email,password:password)) { print("Successfully logged in!")
+            
+            emailText.text = ""
+            passwordText.text = ""
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            
+            guard let homeVC = storyboard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController else{
+                return
             }
+            
+            navigationController?.pushViewController(homeVC, animated: true)
+            
+        } else{
+            showAlert(alertTitle: "Login Failed!", message: "Wrong credentials")
         }
-        }
-        
+    }
     
-        
-        @IBAction func signUpBtn(_ sender: Any) {
-            
-        }
-        
-        func showAlert(alertTitle:String, message:String){
-            let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
-                UIAlertAction in
-                _ = self.navigationController?.popViewController(animated: true)
-                
+    func checkUsers(email: String, password: String) -> Bool{
+        users = db.readUser()
+        var check = false
+        for student in users{
+            if (student.email == email && student.password == password) {
+                check = true
             }
-            
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
         }
         
+        return check
+    }
+    
+    
+    @IBAction func signUpBtn(_ sender: Any) {
         
     }
+    
+    
+    func showAlert(alertTitle:String, message:String){
+        let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
+            UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+}

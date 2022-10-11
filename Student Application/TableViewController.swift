@@ -1,10 +1,3 @@
-//
-//  TableViewContollerViewController.swift
-//  Student Application
-//
-//  Created by Gentrim Canolli on 9/10/22.
-//
-
 import UIKit
 
 class TableViewController: UIViewController {
@@ -17,6 +10,8 @@ class TableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Subjects"
         
         db.createTableSubjects()
         

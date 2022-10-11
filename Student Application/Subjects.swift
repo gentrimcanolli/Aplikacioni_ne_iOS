@@ -1,10 +1,3 @@
-//
-//  Subjects.swift
-//  Student Application
-//
-//  Created by Gentrim Canolli on 9/10/22.
-//
-
 import UIKit
 
 class Subjects {

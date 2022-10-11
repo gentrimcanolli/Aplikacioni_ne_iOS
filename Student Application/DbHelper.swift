@@ -1,10 +1,3 @@
-//
-//  DbHelper.swift
-//  Student Application
-//
-//  Created by Gentrim Canolli on 9/9/22.
-//
-
 import UIKit
 import SQLite3
 import Foundation
@@ -13,8 +6,6 @@ class DbHelper {
     
     init() {
         db = openDatabase()
-//        createTableSubjects()
-//        createTableStudent()
     }
     
     let path: String = "StudentDB.sqlite"
@@ -95,18 +86,18 @@ class DbHelper {
         
         var students: [Students] = []
         
-        if sqlite3_prepare_v2(db, checkQuery, -1, &checkStatement, nil) == SQLITE_OK{
+        if sqlite3_prepare_v2(db, checkQuery, -1, &checkStatement, nil) == SQLITE_OK{	
             while sqlite3_step(checkStatement) == SQLITE_ROW{
                 let id = sqlite3_column_int(checkStatement, 0)
-                let firstname = String(describing: String(cString: sqlite3_column_text(checkStatement, 0)))
-                let lastname = String(describing: String(cString: sqlite3_column_text(checkStatement, 1)))
-                let email = String(describing: String(cString: sqlite3_column_text(checkStatement, 2)))
-                let password = String(describing: String(cString: sqlite3_column_text(checkStatement, 3)))
+                let firstname = String(describing: String(cString: sqlite3_column_text(checkStatement, 1)))
+                let lastname = String(describing: String(cString: sqlite3_column_text(checkStatement, 2)))
+                let email = String(describing: String(cString: sqlite3_column_text(checkStatement, 3)))
+                let password = String(describing: String(cString: sqlite3_column_text(checkStatement, 4)))
                 
                 students.append(Students(id: Int(id), firstname: firstname, lastname: lastname, email: email, password: password))
                 
                 print("Query results: ")
-                print("\(email) | \(password)")
+                print("\(firstname) | \(lastname) | \(email) | \(password)")
             }
         } else{
             print("Select query error")
@@ -115,33 +106,7 @@ class DbHelper {
         return students
     }
     
-    func checkUser(email: String, password: String) -> [Students]{
-        let checkQuery = "SELECT * FROM student WHERE email=\(email) AND password=\(password);"
-        var checkStatement: OpaquePointer? = nil
-        
-        var students: [Students] = []
-        
-        if sqlite3_prepare_v2(db, checkQuery, -1, &checkStatement, nil) == SQLITE_OK{
-            while sqlite3_step(checkStatement) == SQLITE_ROW{
-                let id = sqlite3_column_int(checkStatement, 0)
-                let firstname = String(describing: String(cString: sqlite3_column_text(checkStatement, 0)))
-                let lastname = String(describing: String(cString: sqlite3_column_text(checkStatement, 1)))
-                let email = String(describing: String(cString: sqlite3_column_text(checkStatement, 2)))
-                let password = String(describing: String(cString: sqlite3_column_text(checkStatement, 3)))
-                
-                students.append(Students(id: Int(id), firstname: firstname, lastname: lastname, email: email, password: password))
-                
-                print("Query results: ")
-                print("\(email) | \(password)")
-            }
-        } else{
-            print("Select query error")
-        }
-        sqlite3_finalize(checkStatement)
-        return students
-    }
     
-
     func createTableSubjects(){
         let createTableQuery = "CREATE TABLE IF NOT EXISTS subjects(id INTEGER PRIMARY KEY AUTOINCREMENT, semester TEXT, subject TEXT, professor TEXT, ects INTEGER);"
         

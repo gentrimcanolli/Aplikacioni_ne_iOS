@@ -1,10 +1,3 @@
-//
-//  Students.swift
-//  Student Application
-//
-//  Created by Gentrim Canolli on 9/10/22.
-//
-
 import Foundation
 
 class Students {
@@ -22,6 +15,18 @@ class Students {
         self.email = email
         self.password = password
 
+    }
+    
+    var name: String{
+        get {
+            return firstname
+        }
+    }
+    
+    var surname: String {
+        get{
+            return lastname
+        }
     }
     
     

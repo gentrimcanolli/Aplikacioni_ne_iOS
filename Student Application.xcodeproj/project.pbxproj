@@ -17,7 +17,6 @@
 		CA7B719328BE46C200E926F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B719228BE46C200E926F0 /* SceneDelegate.swift */; };
 		CA7B719528BE46C200E926F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B719428BE46C200E926F0 /* ViewController.swift */; };
 		CA7B719828BE46C200E926F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA7B719628BE46C200E926F0 /* Main.storyboard */; };
-		CA7B719B28BE46C200E926F0 /* Student_Application.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA7B719928BE46C200E926F0 /* Student_Application.xcdatamodeld */; };
 		CA7B719D28BE46C400E926F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA7B719C28BE46C400E926F0 /* Assets.xcassets */; };
 		CA7B71A028BE46C400E926F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA7B719E28BE46C400E926F0 /* LaunchScreen.storyboard */; };
 		CAEF542128BE526500AD9D58 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEF542028BE526500AD9D58 /* SignInViewController.swift */; };
@@ -52,7 +51,6 @@
 		CA7B719228BE46C200E926F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CA7B719428BE46C200E926F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA7B719728BE46C200E926F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CA7B719A28BE46C200E926F0 /* Student_Application.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Student_Application.xcdatamodel; sourceTree = "<group>"; };
 		CA7B719C28BE46C400E926F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA7B719F28BE46C400E926F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA7B71A128BE46C400E926F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				CA7B719C28BE46C400E926F0 /* Assets.xcassets */,
 				CA7B719E28BE46C400E926F0 /* LaunchScreen.storyboard */,
 				CA7B71A128BE46C400E926F0 /* Info.plist */,
-				CA7B719928BE46C200E926F0 /* Student_Application.xcdatamodeld */,
 				95ECA1AC28CA5EE3005DA793 /* HomePageViewController.swift */,
 				95F1D9B328CBB09D008DA006 /* DbHelper.swift */,
 				9565C80528CCC7B200F22021 /* Subjects.swift */,
@@ -260,7 +257,6 @@
 				CA220F9C28BF93EB0075FEE7 /* SignUpViewController.swift in Sources */,
 				95ECA1AD28CA5EE3005DA793 /* HomePageViewController.swift in Sources */,
 				95F1D9B428CBB09D008DA006 /* DbHelper.swift in Sources */,
-				CA7B719B28BE46C200E926F0 /* Student_Application.xcdatamodeld in Sources */,
 				CA7B719528BE46C200E926F0 /* ViewController.swift in Sources */,
 				CA7B719128BE46C200E926F0 /* AppDelegate.swift in Sources */,
 				9565C7FE28CCB2E900F22021 /* Students.swift in Sources */,
@@ -605,19 +601,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CA7B719928BE46C200E926F0 /* Student_Application.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CA7B719A28BE46C200E926F0 /* Student_Application.xcdatamodel */,
-			);
-			currentVersion = CA7B719A28BE46C200E926F0 /* Student_Application.xcdatamodel */;
-			path = Student_Application.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CA7B718528BE46C200E926F0 /* Project object */;
 }

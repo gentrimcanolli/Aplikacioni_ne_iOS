@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Student Application
-//
-//  Created by TDI Student on 30.8.22.
-//
-
 import UIKit
 import Foundation
 
@@ -20,7 +13,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     
@@ -37,7 +29,7 @@ class ViewController: UIViewController {
         //    n - number of months
         
         if (loanAmount.text! == "" || months.text! == "" || interestRate.text! == ""   ){
-            //alert
+            showAlert(alertTitle: "Missing Fields", message: "All fields are required!")
         }
         
         let pv = Double (loanAmount.text!) ?? .zero
@@ -49,11 +41,23 @@ class ViewController: UIViewController {
         
         let total = pmt * n
         
-        monthlyTotalLabel.text = String(format:"%@%.2f", "Monthly total: $", pmt)
+        monthlyTotalLabel.text = String(format:"%@%.2f%@%", "Monthly total: ", pmt, "€")
         
-        totalLabel.text =  String(format:"%@%.2f", "Total: $", total)
+        totalLabel.text =  String(format:"%@%.2f%@%", "Total: ", total, "€")
         
         
+    }
+    
+    func showAlert(alertTitle:String, message:String){
+        let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
+            UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

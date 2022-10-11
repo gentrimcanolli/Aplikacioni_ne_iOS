@@ -1,10 +1,3 @@
-//
-//  SignUpViewController.swift
-//  Student Application
-//
-//  Created by TDI Student on 31.8.22.
-//
-
 import UIKit
 import CoreData
 import SQLite3
@@ -29,10 +22,6 @@ class SignUpViewController: UIViewController {
         
     }
     
-    // Do any additional setup after loading the view.
-    
-    
-    
     @IBAction func signUpBtn(_ sender: Any) {
         let firstName = firstNameTF.text
         let lastName = lastNameTF.text
@@ -52,22 +41,12 @@ class SignUpViewController: UIViewController {
         }
         else {
             db.insertStudent(firstname: firstName!, lastname: lastName!, email: email!, password: password!)
-            
+    
             showAlert(alertTitle: "Register Successfull", message: "You are registered!")
+            
             
         }}
     
-    func showAlert(alertTitle:String, message:String){
-        let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
-            UIAlertAction in
-            _ = self.navigationController?.popViewController(animated: true)
-            
-        }
-        
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-    }
     
     func emailValidation(email: String) -> Bool{
         var returnVal = true
@@ -95,13 +74,26 @@ class SignUpViewController: UIViewController {
     func checkUsers(email: String) -> Bool{
         emailArray = db.readUser()
         var check = false
-        for student in emailArray{
-            if (student.email == email) {
+        for studentEmail in emailArray{
+            if (studentEmail.email == email) {
                 check = true
             }
         }
         
         return check
     }
+    
+    func showAlert(alertTitle:String, message:String){
+        let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
+            UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+
+        }
+        
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
 }
