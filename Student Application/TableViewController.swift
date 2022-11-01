@@ -11,9 +11,8 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Subjects"
-        
         db.createTableSubjects()
+        self.title = "Subjects"
         
         subjectsTableView.delegate = self
         subjectsTableView.dataSource = self

@@ -29,20 +29,20 @@ class SignUpViewController: UIViewController {
         let password = passwordTF.text
         
         if((firstName?.isEmpty)! || (lastName?.isEmpty)! || (email?.isEmpty)! || (password?.isEmpty)!){
-            showAlert(alertTitle: "Missing Fields", message: "All fields are required!")
+            showAlert(alertTitle: "Missing Fields", message: "All fields are required!",actionId: 1)
             return
         }else if (password?.count ?? 0 < 8){
-            showAlert(alertTitle: "Check password", message: "Your password must contain 8 or more letters")
+            showAlert(alertTitle: "Check password", message: "Your password must contain 8 or more letters",actionId: 1)
         } else if (emailValidation(email: email!) == false){
-            showAlert(alertTitle: "Check email", message: "Invalid form of email")
+            showAlert(alertTitle: "Check email", message: "Invalid form of email",actionId: 1)
         }
         else if (checkUsers(email: email!) == true){
-            showAlert(alertTitle: "User Exists", message: "This user already exists")
+            showAlert(alertTitle: "User Exists", message: "This user already exists",actionId: 1)
         }
         else {
             db.insertStudent(firstname: firstName!, lastname: lastName!, email: email!, password: password!)
-    
-            showAlert(alertTitle: "Register Successfull", message: "You are registered!")
+            
+            showAlert(alertTitle: "Register successful", message: "You are registered",actionId: 2)
             
             
         }}
@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController {
     
     func emailValidation(email: String) -> Bool{
         var returnVal = true
-        let regexEmail = "[A-Z0-9a-z.-_]+@[gmail][a-zA-Z]{2,3}"
+        let regexEmail = "[A-Z0-9a-z.-_]+@[gmail].[a-zA-Z]{2,3}"
         
         do {
             let regex = try NSRegularExpression(pattern: regexEmail)
@@ -83,14 +83,19 @@ class SignUpViewController: UIViewController {
         return check
     }
     
-    func showAlert(alertTitle:String, message:String){
+    func showAlert(alertTitle:String, message:String, actionId: Int){
         let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
             UIAlertAction in
-            self.dismiss(animated: true, completion: nil)
-
+            if (actionId == 1){
+                self.dismiss(animated: true, completion: nil)
+                
+            }else if (actionId == 2){
+                self.navigationController?.popViewController(animated: true)
+            }
+            
         }
-        
+        
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
