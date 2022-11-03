@@ -15,7 +15,7 @@ Aplikacioni duhet të:
 - Shfaqë mesazhet e ndryshme si alert dialog
 - Ketë një databazë të brendshme.
 
-### Teknologjitë e përdoruara
+## Teknologjitë e përdoruara
 - Swift - version 14.4
 - SQLite
 - Xcode - version 12.4
