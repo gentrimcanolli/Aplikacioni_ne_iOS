@@ -10,17 +10,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var totalLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    
     @IBAction func calculateBtn(_ sender: Any) {
         calculateLoan()
     }
-    
-    
     
     func calculateLoan(){
         //    PV - loan amount
@@ -44,8 +40,6 @@ class ViewController: UIViewController {
         monthlyTotalLabel.text = String(format:"%@%.2f%@%", "Monthly total: ", pmt, "€")
         
         totalLabel.text =  String(format:"%@%.2f%@%", "Total: ", total, "€")
-        
-        
     }
     
     func showAlert(alertTitle:String, message:String){
@@ -55,10 +49,8 @@ class ViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             
         }
-        
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-    
 }
 

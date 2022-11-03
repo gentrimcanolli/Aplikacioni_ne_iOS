@@ -1,7 +1,6 @@
 import Foundation
 
 class Students {
-    
     var id: Int = 0;
     var firstname: String = ""
     var lastname: String = ""
@@ -14,7 +13,6 @@ class Students {
         self.lastname = lastname
         self.email = email
         self.password = password
-
     }
     
     var name: String{
@@ -28,9 +26,4 @@ class Students {
             return lastname
         }
     }
-    
-    
-    
-    
-
 }

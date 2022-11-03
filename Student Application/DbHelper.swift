@@ -11,7 +11,6 @@ class DbHelper {
     let path: String = "StudentDB.sqlite"
     var db: OpaquePointer?
     
-    
     func openDatabase() -> OpaquePointer? {
         let url = try!
             FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil ,create: false).appendingPathComponent(path)
@@ -43,10 +42,9 @@ class DbHelper {
         } else{
             print("Create table error")
         }
-        
+
         sqlite3_finalize(createTableStatement)
     }
-    
     
     func insertStudent(firstname: String, lastname:String, email:String, password:String) {
         let students = readUser()
@@ -97,7 +95,7 @@ class DbHelper {
                 students.append(Students(id: Int(id), firstname: firstname, lastname: lastname, email: email, password: password))
                 
                 print("Query results: ")
-                print("\(firstname) | \(lastname) | \(email) | \(password)")
+                print("\(firstname) | \(lastname) | \(email)")
             }
         } else{
             print("Select query error")
@@ -105,7 +103,6 @@ class DbHelper {
         sqlite3_finalize(checkStatement)
         return students
     }
-    
     
     func createTableSubjects(){
         let createTableQuery = "CREATE TABLE IF NOT EXISTS subjects(id INTEGER PRIMARY KEY AUTOINCREMENT, semester TEXT, subject TEXT, professor TEXT, ects INTEGER);"
@@ -123,7 +120,7 @@ class DbHelper {
         }
         sqlite3_finalize(createTableStatement)
     }
-    
+
     
     func insertSubjects(semester: String, subject: String, professor:String, ects:Int) {
         let readSubject = readSubjects()

@@ -137,16 +137,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-DO-ORH">
-                                <rect key="frame" x="20" y="384.66666666666669" width="388" height="156.66666666666669"/>
+                                <rect key="frame" x="10" y="384.66666666666669" width="408" height="156.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Welcome, User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QK1-ff-lKF">
-                                        <rect key="frame" x="0.0" y="0.0" width="388" height="22.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="408" height="22.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTk-29-JVX">
-                                        <rect key="frame" x="0.0" y="59.666666666666629" width="388" height="30"/>
+                                        <rect key="frame" x="0.0" y="59.666666666666629" width="408" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <state key="normal" title="Loan Calculator">
                                             <color key="titleColor" systemColor="systemBackgroundColor"/>
@@ -157,7 +157,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-eA-S8f">
-                                        <rect key="frame" x="0.0" y="126.66666666666663" width="388" height="30"/>
+                                        <rect key="frame" x="0.0" y="126.66666666666663" width="408" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <state key="normal" title="Subjects">
                                             <color key="titleColor" systemColor="systemBackgroundColor"/>
@@ -168,34 +168,31 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="Ath-eA-S8f" firstAttribute="leading" secondItem="Pig-DO-ORH" secondAttribute="leading" id="Kwf-N1-hE5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ath-eA-S8f" secondAttribute="trailing" id="LT9-4o-yUi"/>
-                                </constraints>
                             </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hh-XQ-gFi">
-                                <rect key="frame" x="0.0" y="53" width="536" height="44"/>
+                                <rect key="frame" x="0.0" y="53" width="428" height="44"/>
                             </navigationBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Rwz-O4-4Xr">
-                                <rect key="frame" x="-36" y="205" width="500" height="171"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="DZB-hW-8sJ">
+                                <rect key="frame" x="94" y="234" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="171" id="paC-p8-Nn1"/>
+                                    <constraint firstAttribute="height" constant="128" id="iP8-dQ-uG5"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nCR-gp-Ob5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Pig-DO-ORH" firstAttribute="centerX" secondItem="Ort-Gf-fE6" secondAttribute="centerX" id="BZ4-uZ-jkp"/>
-                            <constraint firstItem="Rwz-O4-4Xr" firstAttribute="centerX" secondItem="5hh-XQ-gFi" secondAttribute="centerX" id="GgC-4x-Y0c"/>
-                            <constraint firstItem="Rwz-O4-4Xr" firstAttribute="top" secondItem="Ort-Gf-fE6" secondAttribute="top" constant="205" id="Jfm-i1-4YZ"/>
+                            <constraint firstItem="5hh-XQ-gFi" firstAttribute="centerX" secondItem="Pig-DO-ORH" secondAttribute="centerX" id="0g2-6L-n3O"/>
+                            <constraint firstItem="nCR-gp-Ob5" firstAttribute="trailing" secondItem="Pig-DO-ORH" secondAttribute="trailing" constant="10" id="97X-Tu-WQt"/>
+                            <constraint firstItem="Pig-DO-ORH" firstAttribute="centerY" secondItem="Ort-Gf-fE6" secondAttribute="centerY" id="HdH-AO-2Ee"/>
+                            <constraint firstItem="Pig-DO-ORH" firstAttribute="leading" secondItem="nCR-gp-Ob5" secondAttribute="leading" constant="10" id="Hra-PF-Lol"/>
+                            <constraint firstItem="Pig-DO-ORH" firstAttribute="centerX" secondItem="Ort-Gf-fE6" secondAttribute="centerX" id="Ne2-4g-chJ"/>
+                            <constraint firstItem="DZB-hW-8sJ" firstAttribute="top" secondItem="Ort-Gf-fE6" secondAttribute="top" constant="234" id="P3j-VP-nbN"/>
                             <constraint firstItem="5hh-XQ-gFi" firstAttribute="leading" secondItem="nCR-gp-Ob5" secondAttribute="leading" id="ReL-Ls-alo"/>
-                            <constraint firstItem="Rwz-O4-4Xr" firstAttribute="centerX" secondItem="Ort-Gf-fE6" secondAttribute="centerX" id="cKW-f7-bwV"/>
+                            <constraint firstItem="Pig-DO-ORH" firstAttribute="top" secondItem="DZB-hW-8sJ" secondAttribute="bottom" constant="22.666666666666742" id="bP0-iU-jWw"/>
+                            <constraint firstItem="DZB-hW-8sJ" firstAttribute="centerX" secondItem="Pig-DO-ORH" secondAttribute="centerX" id="ftK-Su-BiY"/>
                             <constraint firstItem="5hh-XQ-gFi" firstAttribute="top" secondItem="nCR-gp-Ob5" secondAttribute="top" constant="9" id="iEh-j2-UXc"/>
-                            <constraint firstItem="Pig-DO-ORH" firstAttribute="leading" secondItem="nCR-gp-Ob5" secondAttribute="leading" constant="20" id="pMK-9X-vhU"/>
-                            <constraint firstItem="nCR-gp-Ob5" firstAttribute="trailing" secondItem="Pig-DO-ORH" secondAttribute="trailing" constant="20" id="puR-9s-4g0"/>
-                            <constraint firstItem="Pig-DO-ORH" firstAttribute="centerY" secondItem="Ort-Gf-fE6" secondAttribute="centerY" id="sws-S4-Ahd"/>
-                            <constraint firstItem="Pig-DO-ORH" firstAttribute="top" secondItem="Rwz-O4-4Xr" secondAttribute="bottom" constant="8.6666666666667425" id="usq-yw-BGs"/>
+                            <constraint firstItem="DZB-hW-8sJ" firstAttribute="leading" secondItem="nCR-gp-Ob5" secondAttribute="leading" constant="94" id="vRa-17-cW3"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -218,25 +215,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="p4I-UI-hbp">
-                                <rect key="frame" x="20" y="278.33333333333331" width="388" height="237.66666666666669"/>
+                                <rect key="frame" x="10" y="344.33333333333331" width="408" height="237.66666666666669"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Loan Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1kA-U5-9H7">
-                                        <rect key="frame" x="0.0" y="0.0" width="388" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="408" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time in months" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GmB-9h-svh">
-                                        <rect key="frame" x="0.0" y="47" width="388" height="34"/>
+                                        <rect key="frame" x="0.0" y="47" width="408" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Interest Rate" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t2e-fH-ESr">
-                                        <rect key="frame" x="0.0" y="94" width="388" height="34"/>
+                                        <rect key="frame" x="0.0" y="94" width="408" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7N-BB-NBz">
-                                        <rect key="frame" x="0.0" y="141" width="388" height="30"/>
+                                        <rect key="frame" x="0.0" y="141" width="408" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <state key="normal" title="Calculate">
                                             <color key="titleColor" systemColor="systemBackgroundColor"/>
@@ -246,26 +243,36 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly total: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wJ-zc-v0C">
-                                        <rect key="frame" x="0.0" y="184" width="388" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="184.00000000000006" width="408" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="AccentColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Interest Paid:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-zK-8ii">
-                                        <rect key="frame" x="0.0" y="217.33333333333337" width="388" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="217.33333333333331" width="408" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="AccentColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loan" translatesAutoresizingMaskIntoConstraints="NO" id="LWc-Jc-M83">
+                                <rect key="frame" x="134" y="134.33333333333334" width="160" height="160.00000000000003"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Q2x-bj-jFW"/>
+                                    <constraint firstAttribute="width" constant="160" id="V48-ZT-iS5"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CAl-tE-fKr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="p4I-UI-hbp" firstAttribute="leading" secondItem="CAl-tE-fKr" secondAttribute="leading" constant="20" id="52g-MR-sKz"/>
-                            <constraint firstItem="CAl-tE-fKr" firstAttribute="bottom" secondItem="p4I-UI-hbp" secondAttribute="bottom" constant="327" id="RpT-gu-qw5"/>
-                            <constraint firstItem="CAl-tE-fKr" firstAttribute="trailing" secondItem="p4I-UI-hbp" secondAttribute="trailing" constant="20" id="yr3-1z-RPb"/>
+                            <constraint firstItem="p4I-UI-hbp" firstAttribute="centerY" secondItem="ke9-6l-dZv" secondAttribute="centerY" id="00L-LT-3pi"/>
+                            <constraint firstItem="p4I-UI-hbp" firstAttribute="centerX" secondItem="ke9-6l-dZv" secondAttribute="centerX" id="8Zf-Ta-vR4"/>
+                            <constraint firstItem="CAl-tE-fKr" firstAttribute="trailing" secondItem="p4I-UI-hbp" secondAttribute="trailing" constant="10" id="dY7-0H-pdl"/>
+                            <constraint firstItem="LWc-Jc-M83" firstAttribute="centerX" secondItem="ke9-6l-dZv" secondAttribute="centerX" id="q47-CO-qg8"/>
+                            <constraint firstItem="p4I-UI-hbp" firstAttribute="top" secondItem="LWc-Jc-M83" secondAttribute="bottom" constant="50" id="t1m-Qa-Yas"/>
+                            <constraint firstItem="p4I-UI-hbp" firstAttribute="leading" secondItem="CAl-tE-fKr" secondAttribute="leading" constant="10" id="tsg-Kc-y6H"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Loan Calculator" id="kYQ-Ow-Bkv"/>
@@ -368,6 +375,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="loan" width="512" height="512"/>
         <image name="studentLogo" width="500" height="500"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -13,7 +13,6 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
     @IBAction func signInBtn(_ sender: Any) {
         
         let email = emailText.text!
@@ -27,7 +26,7 @@ class SignInViewController: UIViewController {
             passwordText.text = ""
             
             let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
-            
+
             homeVC.email = email
             
             self.navigationController?.pushViewController(homeVC, animated: true)
@@ -45,7 +44,6 @@ class SignInViewController: UIViewController {
                 check = true
             }
         }
-        
         return check
     }
     
@@ -54,18 +52,13 @@ class SignInViewController: UIViewController {
         
     }
     
-    
     func showAlert(alertTitle:String, message:String){
         let alert = UIAlertController(title: alertTitle, message:  message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
             UIAlertAction in
             self.dismiss(animated: true, completion: nil)
-            
         }
-        
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
 }

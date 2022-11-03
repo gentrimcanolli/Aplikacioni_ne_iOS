@@ -9,17 +9,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
-    
     var db = DbHelper()
-    
     var emailArray = [Students]()
     var students = Array<Students>()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db.createTableStudent()
-        
     }
     
     @IBAction func signUpBtn(_ sender: Any) {
@@ -43,14 +39,12 @@ class SignUpViewController: UIViewController {
             db.insertStudent(firstname: firstName!, lastname: lastName!, email: email!, password: password!)
             
             showAlert(alertTitle: "Register successful", message: "You are registered",actionId: 2)
-            
-            
-        }}
-    
+        }
+    }
     
     func emailValidation(email: String) -> Bool{
         var returnVal = true
-        let regexEmail = "[A-Z0-9a-z.-_]+@[gmail].[a-zA-Z]{2,3}"
+        let regexEmail = "[A-Z0-9a-z.-_]+@[student].[a-zA-Z]{2,3}"
         
         do {
             let regex = try NSRegularExpression(pattern: regexEmail)
@@ -67,8 +61,6 @@ class SignUpViewController: UIViewController {
         }
         
         return returnVal
-        
-        
     }
     
     func checkUsers(email: String) -> Bool{
@@ -79,7 +71,6 @@ class SignUpViewController: UIViewController {
                 check = true
             }
         }
-        
         return check
     }
     
@@ -89,16 +80,12 @@ class SignUpViewController: UIViewController {
             UIAlertAction in
             if (actionId == 1){
                 self.dismiss(animated: true, completion: nil)
-                
             }else if (actionId == 2){
                 self.navigationController?.popViewController(animated: true)
             }
-            
         }
         
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
 }
